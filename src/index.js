@@ -38,6 +38,11 @@ const exitHandler = () => {
       process.exit(1);
     });
   }
+
+  setTimeout(() => {
+    logger.error('Forced shutdown after grace period');
+    process.exit(1);
+  }, 30000); // 30초 후 강제 종료
 };
 
 const unexpectedErrorHandler = (error) => {
@@ -69,6 +74,11 @@ process.on('SIGTERM', () => {
       process.exit(0);
     });
   }
+
+  setTimeout(() => {
+    logger.error('Forced shutdown after grace period');
+    process.exit(1);
+  }, 120000); // 2분 후 강제 종료
 });
 
 process.on('SIGINT', () => {
@@ -90,4 +100,9 @@ process.on('SIGINT', () => {
       process.exit(0);
     });
   }
+
+  setTimeout(() => {
+    logger.error('Forced shutdown after grace period');
+    process.exit(1);
+  }, 120000); // 2분 후 강제 종료
 });
